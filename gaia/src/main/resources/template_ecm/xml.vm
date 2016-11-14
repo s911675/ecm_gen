@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${pkgMapper}.${mapperClassName}">
+
+    <select id="list${mapperClassName}" parameterType="${entityClassNameL}" resultType="${entityClassNameL}">
+        <![CDATA[
+        /* list${mapperClassName} */
+         ]]>
+        SELECT
+#foreach( $column in $columnList )
+            ${column.columnName}#if( $foreach.hasNext ),#end
+        
+#end
+        FROM ${table.tableName}
+        <where>
+#foreach( $column in $columnList )
+            <if test="${column.columnName} != null">
+                AND ${column.columnName} = #{${column.fieldName}}
+            </if>
+#if( $foreach.hasNext )
+
+#end
+#end
+        </where>
+    </select>
+
+</mapper>

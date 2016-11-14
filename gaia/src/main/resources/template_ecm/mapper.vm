@@ -1,0 +1,20 @@
+#parse("template_ecm/license.vm")
+package ${pkgMapper};
+
+import java.util.List;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Repository;
+
+import ${pkgEntity}.${entityClassName};
+
+#parse("template_ecm/header.vm")
+@Repository
+@Lazy
+public interface ${mapperClassName} {
+
+    /**
+     * list ${entityClassNameL}.
+     */
+	public List<${entityClassName}> list(${entityClassName} ${entityClassNameL}) throws Exception;
+}

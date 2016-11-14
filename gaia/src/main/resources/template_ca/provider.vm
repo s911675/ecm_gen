@@ -1,0 +1,55 @@
+$.namespace('${entityName}.settings');
+${entityName}.settings = {
+
+    fields :
+    [
+#foreach( $column in $columnList )
+        {
+            fieldName : "$column.fieldName", // fieldType = $column.fieldType
+#if($column.fieldType == "String")
+#elseif ($column.fieldType == "Integer" || $column.fieldType == "Float" || $column.fieldType == "Double" || $column.fieldType == "int" || $column.fieldType == "long")
+            fieldType : "number"
+#else
+            fieldType : "datetime",
+            datetimeFormat : "iso"
+#end
+        }#if( $foreach.hasNext ),#end
+
+#end
+    ],
+
+
+    columns :
+    [
+#foreach( $column in $columnList )
+        {
+            name : "$column.fieldName",
+            fieldName : "$column.fieldName",
+            header : {
+                text : MESSAGES.format("ca.${entityName}.$column.fieldName")
+            },
+            width : 100,
+            editable : false,
+            styles : {
+                textAlignment : "left"
+            },
+            visible : true
+        }#if( $foreach.hasNext ),#end
+        
+#end
+    ], // columns
+
+    props : {
+        paging : true,
+        defrow : 5,
+        rows : [ 5, 100, 200, 500, 1000, 5000, 10000 ], 
+        width : "100%", 
+        height : "300px", 
+        autoFitHeight : true,
+        checkbox : true,
+        crud : true,
+        form : "inputForm",
+        action : CONSTANTS.baseUrl + "${bizName}.list.do",
+        saveAction : CONSTANTS.baseUrl + "${bizName}.saveCUD.do"
+    }
+}

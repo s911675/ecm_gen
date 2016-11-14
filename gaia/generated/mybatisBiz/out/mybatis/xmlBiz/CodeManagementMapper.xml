@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="id.co.lotteindo.admin.biz.ca.TcaCommCdMapper">
+
+    <sql id="listWhere">
+		<where>
+			<if test="comm_grp_cd != null">
+				AND comm_grp_cd = #{commGrpCd}
+			</if>
+
+			<if test="comm_cd != null">
+				AND comm_cd = #{commCd}
+			</if>
+
+			<if test="comm_cd_desc != null">
+				AND comm_cd_desc = #{commCdDesc}
+			</if>
+
+			<if test="sort_sord != null">
+				AND sort_sord = #{sortSord}
+			</if>
+
+			<if test="use_yn != null">
+				AND use_yn = #{useYn}
+			</if>
+
+			<if test="fst_regp_id != null">
+				AND fst_regp_id = #{fstRegpId}
+			</if>
+
+			<if test="fst_reg_dtm != null">
+				AND fst_reg_dtm = #{fstRegDtm}
+			</if>
+
+			<if test="last_modp_id != null">
+				AND last_modp_id = #{lastModpId}
+			</if>
+
+			<if test="last_mod_dtm != null">
+				AND last_mod_dtm = #{lastModDtm}
+			</if>
+		</where>
+    </sql>
+    
+	<sql id="getListBase" >
+        <![CDATA[
+		/* getListBase */
+		 ]]>
+		SELECT
+			comm_grp_cd,
+			comm_cd,
+			comm_cd_desc,
+			sort_sord,
+			use_yn,
+			fst_regp_id,
+			fst_reg_dtm,
+			last_modp_id,
+			last_mod_dtm
+		FROM tca_comm_cd
+
+		<include refid="listWhere" />
+
+	</sql>
+
+    <select id="get" parameterType="tcaCommCdEVO" resultType="tcaCommCdEVO">
+        <![CDATA[
+		/* tcaCommCdMapper.get */
+		 ]]>
+		SELECT
+			comm_grp_cd,		
+			comm_cd,		
+			comm_cd_desc,		
+			sort_sord,		
+			use_yn,		
+			fst_regp_id,		
+			fst_reg_dtm,		
+			last_modp_id,		
+			last_mod_dtm		
+		FROM tca_comm_cd
+		WHERE ROWNUM = 1
+			AND comm_grp_cd = #{commGrpCd}
+
+			AND comm_cd = #{commCd}
+    </select>
+
+    <select id="getList" parameterType="tcaCommCdEVO" resultType="tcaCommCdEVO">
+        <![CDATA[
+		/* tcaCommCdMapper.getList */
+		 ]]>
+		<include refid="prePage" />
+        <include refid="getListBase" />
+        <include refid="postPage" />
+    </select>
+
+    <select id="getTotalCount" parameterType="tcaCommCdEVO" resultType="java.lang.Integer">
+        <![CDATA[
+		/* tcaCommCdMapper.getTotalCount */
+		 ]]>
+        SELECT COUNT(*) FROM tca_comm_cd
+	</select>
+
+</mapper>

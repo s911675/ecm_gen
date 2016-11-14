@@ -1,0 +1,45 @@
+#parse("template_ecm/license.vm")
+
+package ${pkgEntity};
+
+#foreach( $import in $importList )
+#if ($import eq "Date")
+import java.sql.Date;
+#elseif ($import eq "Timestamp")
+import java.sql.Timestamp;
+#end
+#end
+
+import id.co.lotteindo.base.entity.AbstractVOEntity;
+
+/**
+ * ${table.tableName} : ${table.comments}.
+ * CreatedDate : ${createDate}
+ */
+public class ${entityClassName} extends AbstractVOEntity {
+#foreach( $column in $columnList )
+
+    /**
+     * ${column.remarks}
+     */
+    private ${column.fieldType} ${column.fieldName};
+#end
+
+    // setter, getter
+#foreach( $column in $columnList )
+
+    /**
+     * setter : ${column.remarks}
+     */
+    public void set${column.javaMethodName}(${column.fieldType} ${column.fieldName}) {
+        this.${column.fieldName} = ${column.fieldName};
+    }
+
+    /**
+     * getter : ${column.remarks}
+     */
+    public ${column.fieldType} get${column.javaMethodName}() {
+        return this.${column.fieldName};
+    }
+#end
+}

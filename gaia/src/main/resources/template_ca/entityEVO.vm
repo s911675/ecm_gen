@@ -1,0 +1,47 @@
+#parse("template_ecm/license.vm")
+package ${pkgEntityEVO};
+
+import id.co.lotteindo.base.entity.AbstractEVOEntity;
+import ${pkgEntity}.${entityClassName};
+
+#foreach( $import in $importList )
+#if ($import eq "Date")
+import java.sql.Date;
+#elseif ($import eq "Timestamp")
+import java.sql.Timestamp;
+#end
+#end
+
+/**
+ * ${table.tableName} : ${table.comments}.
+ * CreatedDate : ${createDate}
+ */
+public class ${bizName}EVO extends AbstractEVOEntity {
+    private ${entityClassName} ${entityClassNameL} = new ${entityClassName} ();
+    
+    // setter, getter
+    public void set${entityClassName} (${entityClassName} ${entityClassNameL}) {
+        this.${entityClassNameL} = ${entityClassNameL};
+    }
+    
+    public ${entityClassName} get${entityClassName} () {
+        return this.${entityClassNameL};
+    }
+    
+#foreach( $column in $columnList )
+    /**
+     * ${column.remarks}
+     */
+    public void set${column.javaMethodName} ( ${column.fieldType} ${column.fieldName}) {
+        get${entityClassName}().set${column.javaMethodName} (${column.fieldName});
+    }
+
+    /**
+     * ${column.remarks}
+     */
+    public ${column.fieldType} get${column.javaMethodName}() {
+        return get${entityClassName}().get${column.javaMethodName}();
+    }
+
+#end
+}

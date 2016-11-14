@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="${pkgMapperTrx}.${mapperTrxClassName}">
+
+    <insert id="insert" parameterType="${entityClassNameL}">
+        <![CDATA[
+		/* ${mapperClassNameL}.insert */
+		 ]]>
+    	INSERT INTO ${table.tableName} (
+#foreach( $column in $columnList )
+			${column.columnName}#if( $foreach.hasNext ),#end
+
+#end    	
+    	) VALUES (
+#foreach( $column in $columnList )
+#if($column.fieldName=='fstRegDtm' || $column.fieldName=='lastModDtm')
+            SYSDATE#if( $foreach.hasNext ),#end
+#else
+			#{${column.fieldName}}#if( $foreach.hasNext ),#end
+#end
+
+#end
+
+		)
+    </insert>
+
+    <update id="update" parameterType="${entityClassNameL}">
+        <![CDATA[
+		/* ${mapperClassNameL}.update */
+		 ]]>
+		UPDATE ${table.tableName} SET
+#foreach( $column in $columnList )
+#if($column.fieldName=='fstRegDtm' || $column.fieldName=='lastModDtm')
+            ${column.columnName} = SYSDATE#if( $foreach.hasNext ),#end
+#elseif($column.isPK=='NO')
+            <if test="${column.columnName} != null">
+            ${column.columnName} = #{${column.fieldName}} ,
+            </if>
+#end	
+	
+#end
+		<where>
+#foreach( $column in $primaryKeyList )
+			AND ${column.columnName} = #{${column.fieldName}}			
+#if( $foreach.hasNext )
+
+#end
+#end
+		</where>
+    </update>
+
+</mapper>

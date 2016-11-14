@@ -1,0 +1,32 @@
+#parse("template_ecm/license.vm")
+package ${pkgMapperBiz};
+
+import java.util.List;
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Repository;
+
+import ${pkgEntityEVO}.${entityEVOClassName};
+
+#parse("template_ecm/header.vm")
+@Repository
+@Lazy
+public interface ${mapperBizClassName} {
+    /**
+     * 작성자:${author}.
+     * 개요:get ${entityEVOClassNameL}.
+     */
+	public ${entityEVOClassName} get(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+	
+    /**
+     * 작성자:${author}.
+     * 개요:get ${entityEVOClassNameL} list.
+     */
+	public List<${entityEVOClassName}> getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+
+    /**
+     * 작성자:${author}.
+     * 개요:get ${entityEVOClassNameL} total count.
+     */
+	public int getTotalCount() throws Exception;
+}

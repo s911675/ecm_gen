@@ -1,0 +1,3 @@
+#foreach( $column in $columnList )
+${modulePkgName}.${entityClassNameL}.${column.fieldName} = ${column.fieldName}
+#end

@@ -1,0 +1,4 @@
+# ${table.tableName} : ${table.comments}.
+#foreach( $column in $columnList )
+${modulePkgName}.${entityName}.${column.fieldName} = ${column.remarks}
+#end

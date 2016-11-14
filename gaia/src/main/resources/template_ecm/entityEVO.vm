@@ -1,0 +1,10 @@
+#parse("template_ecm/license.vm")
+package ${pkgEntityEVO};
+
+import ${pkgEntity}.${entityClassName};
+
+#parse("template_ecm/header.vm")
+@SuppressWarnings("serial")
+public class ${entityEVOClassName} extends ${entityClassName} {
+
+}

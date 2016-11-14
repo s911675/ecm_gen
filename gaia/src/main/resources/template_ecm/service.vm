@@ -1,0 +1,65 @@
+#parse("template_ecm/license.vm")
+package ${pkgService};
+
+import java.util.List;
+
+import ${pkgEntityEVO}.${entityEVOClassName};
+	
+#parse("template_ecm/header.vm")
+public interface ${serviceClassName} {
+	/**
+	 * get ${entityEVOClassName}
+	 * @param ${entityEVOClassNameL}
+	 * @return
+	 * @throws Exception
+	 */
+	public ${entityEVOClassName} get(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+	
+	/**
+	 * get ${entityEVOClassName} List.
+	 * @param ${entityEVOClassName}.
+	 * @return
+	 * @throws Exception
+	 */
+	public List<${entityEVOClassName}> getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+	
+	/**
+	 * getTotalCount.
+	 * 
+	 * @return
+	 * @throws Exception
+	 */
+	public int getTotalCount() throws Exception;
+	
+	/**
+	 * insert.
+	 * @param ${entityEVOClassNameL}
+	 * @return
+	 * @throws Exception
+	 */
+	public void insert(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+
+	/**
+	 * update.
+	 * @param ${entityEVOClassNameL}
+	 * @return
+	 * @throws Exception
+	 */
+	public void update(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+
+	/**
+	 * delete.
+	 * @param ${entityEVOClassNameL}
+	 * @return
+	 * @throws Exception
+	 */
+	public void delete(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+
+    /**
+     * Save ${entityEVOClassName} Create List, Update List, Delete List.
+     * @param createList
+     * @param updateList
+     * @param deleteList
+     */
+    public void saveCUD(List<${entityEVOClassName}> createList, List<${entityEVOClassName}> updateList, List<${entityEVOClassName}> deleteList) throws Exception;
+}

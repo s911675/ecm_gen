@@ -1,0 +1,208 @@
+<%
+#parse("template_ecm/license.vm")
+#parse("template_ecm/header.vm")
+ %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    import="id.co.lotteindo.base.message.MessageResolver"
+%>
+<%@include file="/WEB-INF/jsp/common/top.jsp" %>
+
+<script type="text/javascript">
+MESSAGES.${modulePkgName} = {};
+MESSAGES.${modulePkgName}.${entityClassNameL} = {};
+
+#foreach( $column in $columnList )
+MESSAGES.${modulePkgName}.${entityClassNameL}.${column.fieldName} = '<spring:message code="${modulePkgName}.${entityClassNameL}.${column.fieldName}" javaScriptEscape="true"/>';
+
+#end
+</script>
+
+<!-- 공통 js -->
+<script type="text/javascript" src="<%=_jsUrl %>${pathJs}/${controllerClassName}.list.js"></script>
+
+<script type="text/javascript" src="<%=_jsUrl %>${pathProvider}/${controllerClassName}.provider.js"></script>
+<script type="text/javascript" src="<%=_jsUrl %>${pathHandler}/${controllerClassName}.eventHandler.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    <!-- 공통 js -->
+    ${modulePkgName}.${controllerClassNameL}.initFormLoad();
+    ${modulePkgName}.${controllerClassNameL}.bindButtonEvent();
+
+    <!-- Grid EventHandler -->
+    ${entityClassNameL}.eventhandler.bindButtonEvent();
+});
+</script>
+
+<div id="contentWrap">
+    <!-- s : page title -->
+    <h2 class="page_tit"><a href="#" class="btn_favorite" onclick="fnSetFvAdd();return false;"><span class="blind">즐겨찾기 추가</span><i class="fa fa-star"></i></a>사용자등록관리</h2><!-- 즐겨찾기 되어있는 메뉴 버튼엔 class="on" 추가해주세요 -->
+    <!--// e : page title -->
+
+    <!-- s : search -->
+    <div class="search_area">
+<form name="inputForm" id="inputForm">
+        <fieldset>
+            <legend>search field</legend>
+            <span class="search_unit"><label for="inp_txt1">사용자 ID</label> <input type="text" name="" id="inp_txt1" /></span>
+            <span class="search_unit"><label for="inp_txt2">사용자명</label> <input type="text" name="" id="inp_txt2" /></span>
+            <span class="search_unit">
+                <label for="inp_sel1">업무그룹</label> 
+                <select id="iput_sel1">
+                    <option value="">전체</option>
+                    <option value="">등록된 업무그룹(명)1</option>
+                    <option value="">등록된 업무그룹(명)2</option>
+                </select>
+            </span>
+            <span class="search_unit mgt10">
+                <label for="inp_sel2">사용자구분</label> 
+                <select id="iput_sel2">
+                    <option value="">전체</option>
+                    <option value="">내부직원</option>
+                    <option value="">CS</option>
+                </select>
+            </span>
+            <span class="search_unit mgt10">
+                <label for="inp_sel3">조직</label> 
+                <select id="iput_sel3">
+                    <option value="">전체</option>
+                    <option value="">조직1</option>
+                    <option value="">조직2</option>
+                </select>
+            </span>
+            <span class="search_unit mgt10">
+                <label for="inp_sel4">사용여부</label> 
+                <select id="iput_sel4">
+                    <option value="">전체</option>
+                    <option value="">사용</option>
+                    <option value="">사용안함</option>
+                </select>
+            </span>
+        </fieldset>
+</form>
+        <div class="mgt10 t_right"><a href="#" class="btn btn_type01">조회</a> <a href="#" id="btnInit" class="btn btn_type01">초기화</a></div>
+    </div>
+    <!--// e : search -->
+
+    <!-- s : content -->
+    <div class="cont_section type1"><!-- cont_section -->
+
+        <!-- s : 좌측 영역 -->
+        <div class="left_section">
+            <div class="inner_area">
+                <h3>사용자 목록 <span>(총 365건)</span></h3>
+                <div class="util_area">
+                    <a href="#" class="btn btn_type02">엑셀</a>
+                </div>
+                <div class="grid-area">
+                <!-- 리얼 그리드 들어가는 영역 -->
+                </div>
+            </div>
+        </div>
+        <!--// e : 좌측 영역 -->
+
+        <!-- s : 우측 영역 -->
+        <div class="right_section">
+            <div class="inner_area">
+                <h3>사용자 상세정보</h3>
+                <div class="util_area">
+                    <a href="#" class="btn btn_type02">추가</a> <a href="#" class="btn btn_type02">삭제</a> <a href="#" class="btn btn_type02">저장</a>
+                </div>
+                <table class="inp_tbl">
+                    <caption>메뉴 상세정보</caption>
+                    <colgroup>
+                        <col style="width:18%" />
+                        <col style="width:32%" />
+                        <col style="width:18%" />
+                        <col style="width:*" />
+                    </colgroup>
+                    <tbody>
+                    <tr>
+                        <th scope="row"><label for="inp_data1">사용자ID</label></th>
+                        <td>
+                            <input type="text" name="" id="inp_data1" class="inp_text" disabled="disabled" style="width:180px" />
+                        </td>
+                        <th scope="row"><label for="inp_data2">비밀번호</label></th>
+                        <td><input type="password" name="" id="inp_data2" class="inp_text" style="width:150px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inp_data3">사용자명</label></th>
+                        <td><input type="text" name="" id="inp_data3" class="inp_text" style="width:150px" /></td>
+                        <th scope="row">업무그룹</th>
+                        <td>
+                            <input type="text" name="" id="" class="inp_text" title="업무그룹번호" style="width:50px" disabled="disabled" />
+                            <input type="text" name="" id="" class="inp_text" title="업무그룹명" style="width:100px" disabled="disabled" /> 
+                            <a href="#" class="btn btn_icon" title="검색"><span class="blind">검색</span><i class="fa fa-search"></i></a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inp_data4">국가</label></th>
+                        <td>
+                            <select class="inp_sel" id="inp_data4">
+                                <option value="">선택</option>
+                                <option value="">인도네시아</option>
+                                <option value="">대한민국</option>
+                            </select>
+                        </td>
+                        <th scope="row"><label for="inp_data5">사원번호</label></th>
+                        <td><input type="text" name="" id="inp_data5" class="inp_text" style="width:80px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inp_data6">사용자구분</label></th>
+                        <td>
+                            <select class="inp_sel" id="inp_data6">
+                                <option value="">내부직원</option>
+                            </select>
+                        </td>
+                        <th scope="row"><label for="inp_data7">조직</label></th>
+                        <td>
+                            <select class="inp_sel" id="inp_data7">
+                                <option value="">MD</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inp_data8">전화번호</label></th>
+                        <td>
+                            <input type="text" name="" id="inp_data8" class="inp_text" style="width:150px" />
+                        </td>
+                        <th scope="row"><label for="inp_data9">휴대폰번호</label></th>
+                        <td><input type="text" name="" id="inp_data9" class="inp_text" style="width:150px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inp_data10">이메일</label></th>
+                        <td>
+                            <input type="text" name="" id="inp_data10" class="inp_text" style="width:150px" />
+                        </td>
+                        <th scope="row"><label for="inp_data11">로그인 실패횟수</label></th>
+                        <td><input type="text" name="" id="inp_data11" class="inp_text" style="width:50px" /> 회</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">사용여부</th>
+                        <td><input type="checkbox" name="" id="inp_data12" value="" /> <label for="inp_data12">사용</label></td>
+                        <th scope="row">초기화여부</th>
+                        <td><input type="checkbox" name="" id="inp_data13" value="" /> <label for="inp_data13">초기화</label></td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><label for="inp_data14">사용시작일</label></th>
+                        <td>
+                            <input type="text" name="" id="inp_data14" class="inp_text inp_datepicker" style="width:100px" readonly="readonly" /> 
+                            <a href="#" class="btn btn_icon calendar" title="달력"><span class="blind">달력</span><i class="fa fa-calendar"></i></a> 
+                            <a href="#" class="btn btn_icon eraser" title="지우기"><span class="blind">지우기</span><i class="fa fa-eraser"></i></a>
+                        </td>
+                        <th scope="row"><label for="inp_data15">사용종료일</label></th>
+                        <td>
+                            <input type="text" name="" id="inp_data15" class="inp_text inp_datepicker" style="width:100px" readonly="readonly" />
+                            <a href="#" class="btn btn_icon calendar" title="달력"><span class="blind">달력</span><i class="fa fa-calendar"></i></a> 
+                            <a href="#" class="btn btn_icon eraser" title="지우기"><span class="blind">지우기</span><i class="fa fa-eraser"></i></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--// e : 우측 영역 -->
+    </div>
+    <!--// e : content -->
+</div>

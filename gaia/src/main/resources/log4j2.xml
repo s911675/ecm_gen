@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="Console" target="SYSTEM_OUT">
+      <!-- <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%location]  %logger{36} - %msg%n"/> -->
+      <PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level [%location] %msg%n"/>
+    </Console>
+  </Appenders>
+
+  <Loggers>
+    <Logger name="default.cat" level="DEBUG" additivity="false">
+      <AppenderRef ref="Console"/>  
+    </Logger>
+    <Logger name="id.co.lotteindo.base" level="DEBUG" additivity="false">
+      <AppenderRef ref="Console"/>  
+    </Logger>
+    <Logger name="id.co.lotteindo.base.interceptor" level="INFO" additivity="false">
+      <AppenderRef ref="Console"/>  
+    </Logger>
+    <Logger name="id.co.lotteindo.base.interceptor.MybatisLogInterceptor" level="DEBUG" additivity="false">
+      <AppenderRef ref="Console"/>  
+    </Logger>
+    <Logger name="id.co.lotteindo.mq" level="INFO" additivity="false">
+      <AppenderRef ref="Console"/>
+    </Logger>
+    
+    <Logger name="org.springframework" level="INFO" additivity="false">
+      <AppenderRef ref="Console"/>  
+    </Logger>
+	<logger name="log4jdbc.log4j2" level="error" additivity="false">
+	  <appender-ref ref="Console"/>
+	</logger>
+            
+    <Root level="error">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>

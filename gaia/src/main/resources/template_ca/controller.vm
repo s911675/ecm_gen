@@ -1,0 +1,80 @@
+#parse("template_ecm/license.vm")
+package ${pkgController};
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import id.co.lotteindo.admin.base.annotation.RealGridCUD;
+import id.co.lotteindo.admin.base.annotation.RealGridCUDResponse;
+import id.co.lotteindo.admin.base.annotation.RealGridSearch;
+import id.co.lotteindo.admin.entity.realgrid.RealGridCUDRequest;
+import id.co.lotteindo.admin.entity.realgrid.RealGridListResponse;
+import id.co.lotteindo.base.entity.ajax.JSONResponseEntity;
+import id.co.lotteindo.base.message.MessageResolver;
+import id.co.lotteindo.util.AjaxResponseUtil;
+import id.co.lotteindo.base.mvc.AbstractController;
+
+import ${pkgService}.${serviceClassName};
+import ${pkgEntityEVO}.${entityEVOClassName};
+
+#parse("template_ecm/header.vm")
+@Controller
+@Lazy
+@RequestMapping("/${moduleName}/${controllerClassName}")
+public class ${controllerClassName} extends AbstractController {
+	@Autowired
+    private ${serviceClassName} ${serviceClassNameL};
+
+	@RequestMapping("/list.do")
+	public String list() throws Exception {
+		if (LOGGER.isDebugEnabled()) {
+            LOGGER.debug("start sampleboard list");
+        }
+        return "${pathJsp}/${controllerClassName}.list";
+	}
+
+    @RequestMapping(value = "/get.do", produces = "application/json;charset=UTF-8")
+    @RealGridSearch
+    @ResponseBody
+    public Object get(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+        
+        return ${serviceClassNameL}.get(${entityEVOClassNameL});
+    }
+    
+    @RequestMapping(value = "/getList.do", produces = "application/json;charset=UTF-8")
+    @RealGridSearch
+    @ResponseBody
+    public String getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+        
+        List<${entityEVOClassName}> ${entityEVOClassNameL}List = ${serviceClassNameL}.getList(${entityEVOClassNameL});
+        int totalCnt = ${serviceClassNameL}.getTotalCount();
+        
+        RealGridListResponse response = new RealGridListResponse(${entityEVOClassNameL}List, totalCnt);
+        
+        return response.toJsonString();
+    }
+    
+    @RequestMapping(value = "/saveCUD.do", method = RequestMethod.POST)
+    @RealGridCUDResponse
+    @ResponseBody
+    public ResponseEntity<String> saveCUD(
+	@RealGridCUD(type = ${entityEVOClassName}.class) RealGridCUDRequest<${entityEVOClassName}> realGridCUD) throws Exception {
+
+        List<${entityEVOClassName}> createList = realGridCUD.getCreate();
+        List<${entityEVOClassName}> updateList = realGridCUD.getUpdate();
+        List<${entityEVOClassName}> deleteList = realGridCUD.getDelete();
+        
+        ${serviceClassNameL}.saveCUD(createList, updateList, deleteList);
+        
+        JSONResponseEntity jsonResponseEntity = new JSONResponseEntity(MessageResolver.getMessage("adminCommon.saved.successfully"));
+        
+        return AjaxResponseUtil.generateJSONResponse(jsonResponseEntity);
+    }
+}

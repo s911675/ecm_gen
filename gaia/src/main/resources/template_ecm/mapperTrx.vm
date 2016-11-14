@@ -1,0 +1,27 @@
+#parse("template_ecm/license.vm")
+package ${pkgMapperTrx};
+
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Repository;
+
+import ${pkgEntity}.${entityClassName};
+
+#parse("template_ecm/header.vm")
+@Repository
+@Lazy
+public interface ${mapperTrxClassName} {
+    /**
+     * insert ${entityClassNameL}.
+     */
+	public void insert(${entityClassName} ${entityClassNameL});
+	
+    /**
+     * update ${entityClassNameL}.
+     */
+	public void update(${entityClassName} ${entityClassNameL});
+
+    /**
+     * delete ${entityClassNameL}.
+     */
+	public void delete(${entityClassName} ${entityClassNameL});
+}

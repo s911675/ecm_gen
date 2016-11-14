@@ -1,0 +1,101 @@
+#parse("template_ecm/license.vm")
+package ${pkgServiceImpl};
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+
+import id.co.lotteindo.base.mvc.AbstractService;
+import ${pkgService}.${serviceClassName};
+import ${pkgEntity}.${entityClassName};
+import ${pkgEntityEVO}.${entityEVOClassName};
+import ${pkgMapper}.${mapperClassName};
+import ${pkgMapperTrx}.${mapperTrxClassName};
+import ${pkgMapperBiz}.${mapperBizClassName};
+
+#parse("template_ecm/header.vm")
+@Service
+@Lazy
+@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+public class ${serviceImplClassName} extends AbstractService implements ${serviceClassName} {
+	@Autowired
+    private ${mapperClassName} ${mapperClassNameL};
+
+    @Autowired
+    private ${mapperTrxClassName} ${mapperTrxClassNameL};
+
+	@Autowired
+    private ${mapperBizClassName} ${mapperBizClassNameL};
+    
+	@Override
+	public ${entityEVOClassName} get(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+		return ${mapperBizClassNameL}.get(${entityEVOClassNameL});
+	}
+	
+	@Override
+	public List<${entityEVOClassName}> getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+		return ${mapperBizClassNameL}.getList(${entityEVOClassNameL});
+	}
+	
+	@Override
+	public int getTotalCount() throws Exception {
+		return ${mapperBizClassNameL}.getTotalCount();
+	}
+	
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+	public void insert(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+		${mapperTrxClassNameL}.insert(${entityEVOClassNameL}.get${entityClassName}());
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+	public void update(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+		${mapperTrxClassNameL}.update(${entityEVOClassNameL}.get${entityClassName}());
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+	public void delete(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+		${mapperTrxClassNameL}.delete(${entityEVOClassNameL}.get${entityClassName}());
+	}
+
+    @Override
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    public void saveCUD(List<${entityEVOClassName}> createList, List<${entityEVOClassName}> updateList, List<${entityEVOClassName}> deleteList) throws Exception {
+        insertList(createList);
+        updateList(updateList);
+        deleteList(deleteList);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    public void insertList(List<${entityEVOClassName}> createList) throws Exception {
+        if (createList != null && createList.size() != 0) {
+            for (${entityEVOClassName} tmp${entityEVOClassName} : createList) {
+                ${mapperTrxClassNameL}.insert(tmp${entityEVOClassName}.get${entityClassName}());
+            }
+        }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    public void updateList(List<${entityEVOClassName}> updateList) throws Exception {
+        if (updateList != null && updateList.size() != 0) {
+            for (${entityEVOClassName} tmp${entityEVOClassName} : updateList) {
+                ${mapperTrxClassNameL}.update(tmp${entityEVOClassName}.get${entityClassName}());
+            }
+        }
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    public void deleteList(List<${entityEVOClassName}> deleteList) throws Exception {
+        if (deleteList != null && deleteList.size() != 0) {
+            for (${entityEVOClassName} tmp${entityEVOClassName} : deleteList) {
+                ${mapperTrxClassNameL}.delete(tmp${entityEVOClassName}.get${entityClassName}());
+            }
+        }
+    }
+}
