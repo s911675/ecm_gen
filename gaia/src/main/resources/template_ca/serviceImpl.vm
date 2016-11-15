@@ -18,7 +18,7 @@ import ${pkgMapperBiz}.${mapperBizClassName};
 #parse("template_ecm/header.vm")
 @Service
 @Lazy
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+@Transactional(value="localZoneTxManager", propagation = Propagation.SUPPORTS, readOnly = true)
 public class ${serviceImplClassName} extends AbstractService implements ${serviceClassName} {
     @Autowired
     private ${mapperTrxClassName} ${mapperTrxClassNameL};

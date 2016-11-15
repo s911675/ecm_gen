@@ -26,7 +26,7 @@ ${entityName}.settings = {
             name : "$column.fieldName",
             fieldName : "$column.fieldName",
             header : {
-                text : MESSAGES.format("ca.${entityName}.$column.fieldName")
+                text : MESSAGES.format("${moduleName}.${entityName}.$column.fieldName")
             },
             width : 100,
             editable : false,
