@@ -1,4 +1,4 @@
-$.namespace("${modulePkgName}.${bizName}.list");
+.namespace("${modulePkgName}.${bizName}.list");
 ${modulePkgName}.${bizName}.list = {
 
     initFormLoad : function(){
@@ -10,17 +10,14 @@ ${modulePkgName}.${bizName}.list = {
     bindButtonEvent : function(){
         console.log("binding events...");
 
-        // 엔터 입력 시 조회처리
         $(document).ready(function() {
 //            lotteindo.common.Util.setupEnterSearch("inputForm", "btn_search");
         });
 
-        // 초기화
         $('#btn_init').click(function(event){
             $('#inputForm')[0].reset();
         });
 
-        // 검색
         $('#btn_search').click(function(){
 //            inputTblGrid.eventhandler.onSearch();
         });

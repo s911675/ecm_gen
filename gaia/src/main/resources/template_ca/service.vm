@@ -21,7 +21,7 @@ public interface ${serviceClassName} {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<${entityEVOClassName}> getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+	public List<${entityEVOClassName}> list(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
 	
 	/**
 	 * getTotalCount.

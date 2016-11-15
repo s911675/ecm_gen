@@ -6,6 +6,7 @@ import java.util.List;
 import mybatis.gen.util.EcmVelocityUtil;
 
 
+
 /**
  * 중요! 중요! 중요! 중요! 중요! 중요! 중요! 중요!
  * !!!!!!!!!! JAVA 8 이상으로 사용해 주세요~
@@ -45,21 +46,22 @@ public class EcmCodeGenCaMain {
             return;
         }
         
-        String conf = "C:/ECM/workspace/gaia/src/main/resources/velocity_ecm_ca.properties";
+//        String conf = "C:/ECM/workspace/gaia/src/main/resources/velocity_ecm_ca.properties";
+        String conf = "C:/git/ecm_gen/gaia/src/main/resources/velocity_ecm_ca.properties";
 
         List<String> codeGenList = new ArrayList<String> ();
-//        codeGenList.add("service");
-//        codeGenList.add("serviceImpl");
-//        codeGenList.add("controller");
-//        codeGenList.add("jsp");
+        codeGenList.add("service");
+        codeGenList.add("serviceImpl");
+        codeGenList.add("controller");
+        codeGenList.add("jsp");
         codeGenList.add("js");
         codeGenList.add("provider");
         codeGenList.add("handler");
         codeGenList.add("msg");
         
-//        codeGenList.add("entityEVO");
-//        codeGenList.add("xmlBiz");
-//        codeGenList.add("mapperBiz");
+        codeGenList.add("entityEVO");
+        codeGenList.add("xmlBiz");
+        codeGenList.add("mapperBiz");
 
 //        EcmVelocityUtil.generate(conf, codeGenList, dbType, pkgName.toLowerCase(), dbPkgName.toLowerCase(), tableName.toUpperCase());
         

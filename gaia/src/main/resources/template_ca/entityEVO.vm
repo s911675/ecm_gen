@@ -1,7 +1,7 @@
 #parse("template_ecm/license.vm")
 package ${pkgEntityEVO};
 
-import id.co.lotteindo.base.entity.AbstractEVOEntity;
+import id.co.lotteindo.entity.BaseCommonEntity;
 import ${pkgEntity}.${entityClassName};
 
 #foreach( $import in $importList )
@@ -16,7 +16,8 @@ import java.sql.Timestamp;
  * ${table.tableName} : ${table.comments}.
  * CreatedDate : ${createDate}
  */
-public class ${bizName}EVO extends AbstractEVOEntity {
+@SuppressWarnings("serial")
+public class ${bizName}EVO extends BaseCommonEntity {
     private ${entityClassName} ${entityClassNameL} = new ${entityClassName} ();
     
     // setter, getter

@@ -219,6 +219,7 @@ public class EcmVelocityUtil {
 
 		// module name
 		context.put("modulePkgName", (String)Velocity.getProperty("module.pkg.name"));
+		context.put("moduleName", (String)Velocity.getProperty("moduleName"));
 
 		// package ST
 		// entity package path

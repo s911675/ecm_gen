@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import id.co.lotteindo.base.mvc.AbstractService;
 import ${pkgService}.${serviceClassName};
-import ${pkgEntity}.${entityClassName};
 import ${pkgEntityEVO}.${entityEVOClassName};
-import ${pkgMapper}.${mapperClassName};
 import ${pkgMapperTrx}.${mapperTrxClassName};
 import ${pkgMapperBiz}.${mapperBizClassName};
 
@@ -22,9 +20,6 @@ import ${pkgMapperBiz}.${mapperBizClassName};
 @Lazy
 @Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 public class ${serviceImplClassName} extends AbstractService implements ${serviceClassName} {
-	@Autowired
-    private ${mapperClassName} ${mapperClassNameL};
-
     @Autowired
     private ${mapperTrxClassName} ${mapperTrxClassNameL};
 
@@ -37,8 +32,8 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
 	}
 	
 	@Override
-	public List<${entityEVOClassName}> getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
-		return ${mapperBizClassNameL}.getList(${entityEVOClassNameL});
+	public List<${entityEVOClassName}> list(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+		return ${mapperBizClassNameL}.list(${entityEVOClassNameL});
 	}
 	
 	@Override
@@ -61,7 +56,7 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
 	public void delete(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
-		${mapperTrxClassNameL}.delete(${entityEVOClassNameL}.get${entityClassName}());
+//		${mapperTrxClassNameL}.delete(${entityEVOClassNameL}.get${entityClassName}());
 	}
 
     @Override
@@ -76,7 +71,7 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
     public void insertList(List<${entityEVOClassName}> createList) throws Exception {
         if (createList != null && createList.size() != 0) {
             for (${entityEVOClassName} tmp${entityEVOClassName} : createList) {
-                ${mapperTrxClassNameL}.insert(tmp${entityEVOClassName}.get${entityClassName}());
+                insert(tmp${entityEVOClassName});
             }
         }
     }
@@ -85,7 +80,7 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
     public void updateList(List<${entityEVOClassName}> updateList) throws Exception {
         if (updateList != null && updateList.size() != 0) {
             for (${entityEVOClassName} tmp${entityEVOClassName} : updateList) {
-                ${mapperTrxClassNameL}.update(tmp${entityEVOClassName}.get${entityClassName}());
+                update(tmp${entityEVOClassName});
             }
         }
     }
@@ -94,7 +89,7 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
     public void deleteList(List<${entityEVOClassName}> deleteList) throws Exception {
         if (deleteList != null && deleteList.size() != 0) {
             for (${entityEVOClassName} tmp${entityEVOClassName} : deleteList) {
-                ${mapperTrxClassNameL}.delete(tmp${entityEVOClassName}.get${entityClassName}());
+                delete(tmp${entityEVOClassName});
             }
         }
     }

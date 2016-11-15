@@ -1,4 +1,4 @@
-$.namespace('${entityName}.settings');
+.namespace('${entityName}.settings');
 ${entityName}.settings = {
 
     fields :
@@ -49,7 +49,7 @@ ${entityName}.settings = {
         checkbox : true,
         crud : true,
         form : "inputForm",
-        action : CONSTANTS.baseUrl + "${bizName}.list.do",
-        saveAction : CONSTANTS.baseUrl + "${bizName}.saveCUD.do"
+        action : CONSTANTS.baseUrl + "${moduleName}/${bizName}/${bizName}.list.do",
+        saveAction : CONSTANTS.baseUrl + "${moduleName}/${bizName}/${bizName}.saveCUD.do"
     }
 }

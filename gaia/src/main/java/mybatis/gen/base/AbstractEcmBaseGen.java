@@ -157,10 +157,15 @@ public abstract class AbstractEcmBaseGen {
 		String entityNameL = EcmVelocityUtil.toCamelCase(lowerTableName);
 
 		String bizName = (String)Velocity.getProperty(tableName);
+		String bizNameL = "";
 		if (bizName==null || bizName.equals("")) {
 		    bizName = entityName;
+		    bizNameL = entityNameL;
+		} else {
+		    bizNameL = Character.toLowerCase(bizName.charAt(0)) + bizName.substring(1);
 		}
 		context.put("bizName", bizName);
+		context.put("bizNameL", bizNameL);
 		
 		context.put("entityName", entityName);
         
@@ -174,20 +179,20 @@ public abstract class AbstractEcmBaseGen {
 		context.put("mapperTrxClassName", entityName + EcmMapperTrxGen.OUTPUT_FILE_SUFFIX);
 		context.put("mapperTrxClassNameL", entityNameL + EcmMapperTrxGen.OUTPUT_FILE_SUFFIX);
 
-		context.put("serviceClassName", entityName + EcmServiceGen.OUTPUT_FILE_SUFFIX);
-		context.put("serviceClassNameL", entityNameL + EcmServiceGen.OUTPUT_FILE_SUFFIX);
+		context.put("serviceClassName", bizName + EcmServiceGen.OUTPUT_FILE_SUFFIX);
+		context.put("serviceClassNameL", bizNameL + EcmServiceGen.OUTPUT_FILE_SUFFIX);
 
-		context.put("serviceImplClassName", entityName + EcmServiceImplGen.OUTPUT_FILE_SUFFIX);
-		context.put("serviceImplClassNameL", entityNameL + EcmServiceImplGen.OUTPUT_FILE_SUFFIX);
+		context.put("serviceImplClassName", bizName + EcmServiceImplGen.OUTPUT_FILE_SUFFIX);
+		context.put("serviceImplClassNameL", bizNameL + EcmServiceImplGen.OUTPUT_FILE_SUFFIX);
 		
-		context.put("controllerClassName", entityName + EcmControllerGen.OUTPUT_FILE_SUFFIX);
-		context.put("controllerClassNameL", entityNameL + EcmControllerGen.OUTPUT_FILE_SUFFIX);
+		context.put("controllerClassName", bizName + EcmControllerGen.OUTPUT_FILE_SUFFIX);
+		context.put("controllerClassNameL", bizNameL + EcmControllerGen.OUTPUT_FILE_SUFFIX);
 
-		context.put("entityEVOClassName", entityName + EcmEntityEVOGen.OUTPUT_FILE_SUFFIX);
-        context.put("entityEVOClassNameL", entityNameL + EcmEntityEVOGen.OUTPUT_FILE_SUFFIX);
+		context.put("entityEVOClassName", bizName + EcmEntityEVOGen.OUTPUT_FILE_SUFFIX);
+        context.put("entityEVOClassNameL", bizNameL + EcmEntityEVOGen.OUTPUT_FILE_SUFFIX);
 
-        context.put("mapperBizClassName", entityName + EcmMapperBizGen.OUTPUT_FILE_SUFFIX);
-        context.put("mapperBizClassNameL", entityNameL + EcmMapperBizGen.OUTPUT_FILE_SUFFIX);
+        context.put("mapperBizClassName", bizName + EcmMapperBizGen.OUTPUT_FILE_SUFFIX);
+        context.put("mapperBizClassNameL", bizNameL + EcmMapperBizGen.OUTPUT_FILE_SUFFIX);
 		
 		// file name
 		context.put("entityFileName", entityName + EcmEntityGen.OUTPUT_FILE_SUFFIX + EcmEntityGen.OUTPUT_FILE_EXTENSION);

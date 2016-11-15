@@ -27,7 +27,7 @@ import ${pkgEntityEVO}.${entityEVOClassName};
 #parse("template_ecm/header.vm")
 @Controller
 @Lazy
-@RequestMapping("/${moduleName}/${controllerClassName}")
+@RequestMapping("/${moduleName}/${bizName}")
 public class ${controllerClassName} extends AbstractController {
 	@Autowired
     private ${serviceClassName} ${serviceClassNameL};
@@ -53,7 +53,7 @@ public class ${controllerClassName} extends AbstractController {
     @ResponseBody
     public String getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
         
-        List<${entityEVOClassName}> ${entityEVOClassNameL}List = ${serviceClassNameL}.getList(${entityEVOClassNameL});
+        List<${entityEVOClassName}> ${entityEVOClassNameL}List = ${serviceClassNameL}.list(${entityEVOClassNameL});
         int totalCnt = ${serviceClassNameL}.getTotalCount();
         
         RealGridListResponse response = new RealGridListResponse(${entityEVOClassNameL}List, totalCnt);

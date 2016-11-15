@@ -1,4 +1,4 @@
-$.namespace('${entityName}.eventhandler');
+.namespace("${entityName}.eventhandler");
 ${entityName}.eventhandler = {
 
     bindButtonEvent : function() {
