@@ -26,7 +26,7 @@ ${entityName}.settings = {
             name : "$column.fieldName",
             fieldName : "$column.fieldName",
             header : {
-                text : MESSAGES.format("${moduleName}.${entityName}.$column.fieldName")
+                text : MESSAGES.format("${moduleName}.js.label.${entityName}.$column.fieldName")
             },
             width : 100,
             editable : false,
@@ -41,7 +41,7 @@ ${entityName}.settings = {
 
     props : {
         paging : true,
-        defrow : 5,
+        defrow : 10,
         rows : [ 5, 100, 200, 500, 1000, 5000, 10000 ], 
         width : "100%", 
         height : "300px", 
