@@ -54,9 +54,9 @@
         <![CDATA[
 		/* ${mapperBizClassNameL}.getList */
 		 ]]>
-		<include refid="prePage" />
+		<include refid="CaCommon.prePage" />
         <include refid="getListBase" />
-        <include refid="postPage" />
+        <include refid="CaCommon.postPage" />
     </select>
 
     <select id="getTotalCount" parameterType="${entityEVOClassNameL}" resultType="java.lang.Integer">
