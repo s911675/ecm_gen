@@ -22,7 +22,7 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName}#if( $foreach.hasNext ),#end
+            ${column.columnName}#if( $velocityHasNext ), #end
 
 #end
 		FROM ${table.tableName}
@@ -37,8 +37,8 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName}#if( $foreach.hasNext ),#end
-        
+            ${column.columnName}#if( $velocityHasNext ), #end
+
 #end
 		FROM ${table.tableName}
 		WHERE ROWNUM = 1
