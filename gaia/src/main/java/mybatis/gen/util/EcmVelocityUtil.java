@@ -47,31 +47,33 @@ public class EcmVelocityUtil {
 	 * @return
 	 * @throws Exception
 	 */
-	public static final String convertDbType2JavaType (final String type, String columnSize) throws Exception {
-		String tmpType = type.toLowerCase();
-		if (tmpType.contains("int")) {
-			return "Integer";
-		} else if (tmpType.contains("varchar") || tmpType.contains("varchar2") || tmpType.contains("char")) {
-			return "String";
-		} else if (tmpType.contains("date")) {
-//			return "Date";
-			return "Timestamp";
-		} else if (tmpType.contains("timestamp")) {
-			return "Timestamp";
-		} else if (tmpType.contains("decimal") || tmpType.contains("float")) {
-			return "Float";
-		} else if (tmpType.contains("double")) {
-			return "Double";
-		} else if (tmpType.contains("number")) {
-		    if (Integer.parseInt(columnSize) < 10) {
-		        return "int";
-		    } else {
-		        return "long";
-		    }
-		} else {
-			throw new Exception("not supported type getDb2JavaType () type="+type);
-		}
-	}
+    public static final String convertDbType2JavaType (final String type, String columnSize) throws Exception {
+        String tmpType = type.toLowerCase();
+        if (tmpType.contains("int")) {
+            return "Integer";
+        } else if (tmpType.contains("varchar") || tmpType.contains("varchar2") || tmpType.contains("char")) {
+            return "String";
+        } else if (tmpType.contains("date")) {
+//          return "Date";
+            return "Timestamp";
+        } else if (tmpType.contains("timestamp")) {
+            return "Timestamp";
+        } else if (tmpType.contains("decimal") || tmpType.contains("float")) {
+            return "Float";
+        } else if (tmpType.contains("double")) {
+            return "Double";
+        } else if (tmpType.contains("number")) {
+            if (Integer.parseInt(columnSize) < 10) {
+                //return "int";
+                return "Integer";
+            } else {
+                //return "long";
+                return "Long";
+            }
+        } else {
+            throw new Exception("not supported type getDb2JavaType () type="+type);
+        }
+    }
 
 	/**
 	 * Convert string to camelCase string but first character is upperCase.
