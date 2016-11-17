@@ -47,8 +47,8 @@ public class ${bizName}EVO extends BaseCommonEntity {
     /**
      * ${column.remarks}
      */
-    public void set${column.mappedFullName} ( ${column.fieldType} ${column.fieldName}) {
-        get${entityClassName}().set${column.javaMethodName} (${column.fieldName});
+    public void set${column.mappedFullName} ( ${column.fieldType} ${column.mappedFullName}) {
+        get${entityClassName}().set${column.javaMethodName} (${column.mappedFullName});
     }
 
     /**
