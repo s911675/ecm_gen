@@ -9,15 +9,15 @@
 		 ]]>
     	INSERT INTO ${table.tableName} (
 #foreach( $column in $columnList )
-			${column.columnName}#if( $foreach.hasNext ),#end
+			${column.columnName}#if( $velocityHasNext ),#end
 
 #end    	
     	) VALUES (
 #foreach( $column in $columnList )
 #if($column.fieldName=='fstRegDtm' || $column.fieldName=='lastModDtm')
-            SYSDATE#if( $foreach.hasNext ),#end
+            SYSDATE#if( $velocityHasNext ),#end
 #else
-			#{${column.fieldName}}#if( $foreach.hasNext ),#end
+			#{${column.fieldName}}#if( $velocityHasNext ),#end
 #end
 
 #end
@@ -32,9 +32,9 @@
 		UPDATE ${table.tableName} SET
 #foreach( $column in $columnList )
 #if($column.fieldName=='fstRegDtm' || $column.fieldName=='lastModDtm')
-            ${column.columnName} = SYSDATE#if( $foreach.hasNext ),#end
+            ${column.columnName} = SYSDATE#if( $velocityHasNext ),#end
 #else
-            ${column.columnName} = #{${column.fieldName}}#if( $foreach.hasNext ),#end
+            ${column.columnName} = #{${column.fieldName}}#if( $velocityHasNext ),#end
 #end
 		
 #end
@@ -43,7 +43,7 @@
 			<if test="${column.columnName} != null">
 				AND ${column.columnName} = #{${column.fieldName}}
 			</if>
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end
@@ -51,7 +51,7 @@
 			<if test="${column.columnName} != null">
 				AND ${column.columnName} = #{${column.fieldName}}
 			</if>
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end
@@ -68,7 +68,7 @@
             <if test="${column.columnName} != null">
                 AND ${column.columnName} = #{${column.fieldName}}
             </if>
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end
@@ -76,7 +76,7 @@
             <if test="${column.columnName} != null">
                 AND ${column.columnName} = #{${column.fieldName}}
             </if>
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end

@@ -9,7 +9,7 @@
          ]]>
         SELECT
 #foreach( $column in $columnList )
-            ${column.columnName}#if( $foreach.hasNext ),#end
+            ${column.columnName}#if( $velocityHasNext ),#end
         
 #end
         FROM ${table.tableName}
@@ -18,7 +18,7 @@
             <if test="${column.columnName} != null">
                 AND ${column.columnName} = #{${column.fieldName}}
             </if>
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end

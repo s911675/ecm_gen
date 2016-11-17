@@ -6,10 +6,10 @@
     <sql id="listWhere">
 		<where>
 #foreach( $column in $columnList )
-			<if test="${column.fieldName} != null">
-				AND ${column.columnName} = #{${column.fieldName}}
+			<if test="${column.mappedFullName} != null">
+				AND ${column.columnName} = #{${column.mappedFullName}}
 			</if>
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end
@@ -22,7 +22,7 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName}#if( $velocityHasNext ), #end
+            ${column.columnName} AS ${column.mappedFullName}#if( $velocityHasNext ), #end
 
 #end
 		FROM ${table.tableName}
@@ -37,20 +37,20 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName}#if( $velocityHasNext ), #end
+            ${column.columnName} AS ${column.mappedFullName}#if( $velocityHasNext ), #end
 
 #end
 		FROM ${table.tableName}
 		WHERE ROWNUM = 1
 #foreach( $primaryKey in ${table.primaryKeyList} )
-			AND ${primaryKey.columnName} = #{${primaryKey.fieldName}}
-#if( $foreach.hasNext )
+			AND ${primaryKey.columnName} = #{${primaryKey.mappedFullName}}
+#if( $velocityHasNext )
 
 #end
 #end
     </select>
 
-    <select id="list" parameterType="${entityEVOClassNameL}" resultType="${entityEVOClassNameL}">
+    <select id="getList" parameterType="${entityEVOClassNameL}" resultType="${entityEVOClassNameL}">
         <![CDATA[
 		/* ${mapperBizClassNameL}.getList */
 		 ]]>

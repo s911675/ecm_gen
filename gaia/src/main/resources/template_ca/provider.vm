@@ -5,7 +5,7 @@ ${entityName}.settings = {
     [
 #foreach( $column in $columnList )
         {
-            fieldName : "$column.fieldName", // fieldType = $column.fieldType
+            fieldName : "$column.mappedFullName", // fieldType = $column.fieldType
 #if($column.fieldType == "String")
 #elseif ($column.fieldType == "Integer" || $column.fieldType == "Float" || $column.fieldType == "Double" || $column.fieldType == "int" || $column.fieldType == "long")
             fieldType : "number"
@@ -13,7 +13,7 @@ ${entityName}.settings = {
             fieldType : "datetime",
             datetimeFormat : "iso"
 #end
-        }#if( $foreach.hasNext ),#end
+        }#if( $velocityHasNext ),#end
 
 #end
     ],
@@ -23,8 +23,8 @@ ${entityName}.settings = {
     [
 #foreach( $column in $columnList )
         {
-            name : "$column.fieldName",
-            fieldName : "$column.fieldName",
+            name : "$column.mappedFullName",
+            fieldName : "$column.mappedFullName",
             header : {
                 text : MESSAGES.format("${moduleName}.js.label.${entityName}.$column.fieldName")
             },
@@ -34,7 +34,7 @@ ${entityName}.settings = {
                 textAlignment : "left"
             },
             visible : true
-        }#if( $foreach.hasNext ),#end
+        }#if( $velocityHasNext ),#end
         
 #end
     ], // columns
@@ -49,7 +49,7 @@ ${entityName}.settings = {
         checkbox : true,
         crud : true,
         form : "inputForm",
-        action : CONSTANTS.baseUrl + "${moduleName}/${bizName}/${bizName}.list.do",
-        saveAction : CONSTANTS.baseUrl + "${moduleName}/${bizName}/${bizName}.saveCUD.do"
+        action : CONSTANTS.baseUrl + "${moduleName}/${bizName}/getList.do",
+        saveAction : CONSTANTS.baseUrl + "${moduleName}/${bizName}/saveCUD.do"
     }
 }

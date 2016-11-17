@@ -32,8 +32,8 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
 	}
 	
 	@Override
-	public List<${entityEVOClassName}> list(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
-		return ${mapperBizClassNameL}.list(${entityEVOClassNameL});
+	public List<${entityEVOClassName}> getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
+		return ${mapperBizClassNameL}.getList(${entityEVOClassNameL});
 	}
 	
 	@Override

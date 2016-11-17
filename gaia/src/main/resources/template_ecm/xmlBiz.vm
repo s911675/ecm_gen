@@ -9,7 +9,7 @@
 			<if test="${column.columnName} != null">
 				AND ${column.columnName} = #{${column.fieldName}}
 			</if>
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end
@@ -22,7 +22,7 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-			${column.columnName}#if( $foreach.hasNext ),#end
+			${column.columnName}#if( $velocityHasNext ),#end
 
 #end
 		FROM ${table.tableName}
@@ -44,7 +44,7 @@
 		WHERE ROWNUM = 1
 #foreach( $primaryKey in ${table.primaryKeyList} )
 			AND ${primaryKey.columnName} = #{${primaryKey.fieldName}}
-#if( $foreach.hasNext )
+#if( $velocityHasNext )
 
 #end
 #end

@@ -22,7 +22,7 @@ public interface ${mapperBizClassName} {
      * 작성자:${author}.
      * 개요:get ${entityEVOClassNameL} list.
      */
-	public List<${entityEVOClassName}> list(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
+	public List<${entityEVOClassName}> getList(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception;
 
     /**
      * 작성자:${author}.

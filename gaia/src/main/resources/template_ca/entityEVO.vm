@@ -19,28 +19,41 @@ import java.sql.Timestamp;
 @SuppressWarnings("serial")
 public class ${bizName}EVO extends BaseCommonEntity {
     private ${entityClassName} ${entityClassNameL} = new ${entityClassName} ();
-    
+
     // setter, getter
     public void set${entityClassName} (${entityClassName} ${entityClassNameL}) {
         this.${entityClassNameL} = ${entityClassNameL};
     }
-    
+
     public ${entityClassName} get${entityClassName} () {
         return this.${entityClassNameL};
+    }
+
+    @Override
+    public <T> T copyTo(Class<T> type) throws Exception {
+        T instance =  super.copyTo(type);
+        
+        if (type.isAssignableFrom(${entityClassName}.class)) {
+            ${entityClassName} vo = (${entityClassName})instance;
+            vo.setFstRegpId(getSysRegrId());
+            vo.setLastModpId(getSysModrId());
+        }
+        
+        return instance;
     }
     
 #foreach( $column in $columnList )
     /**
      * ${column.remarks}
      */
-    public void set${column.javaMethodName} ( ${column.fieldType} ${column.fieldName}) {
+    public void set${column.mappedFullName} ( ${column.fieldType} ${column.fieldName}) {
         get${entityClassName}().set${column.javaMethodName} (${column.fieldName});
     }
 
     /**
      * ${column.remarks}
      */
-    public ${column.fieldType} get${column.javaMethodName}() {
+    public ${column.fieldType} get${column.mappedFullName}() {
         return get${entityClassName}().get${column.javaMethodName}();
     }
 
