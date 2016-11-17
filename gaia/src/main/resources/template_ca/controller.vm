@@ -35,9 +35,9 @@ public class ${controllerClassName} extends AbstractController {
 	@RequestMapping("/list.do")
 	public String list() throws Exception {
 		if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("start sampleboard list");
+            LOGGER.debug("start ${bizName} list");
         }
-        return "${pathJsp}${controllerClassName}.list";
+        return "${pathJsp}${bizName}.list";
 	}
 
     @RequestMapping(value = "/get.do", produces = "application/json;charset=UTF-8")
