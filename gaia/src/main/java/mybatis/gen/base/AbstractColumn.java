@@ -1,5 +1,10 @@
 package mybatis.gen.base;
 
+import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.velocity.app.Velocity;
+
 import mybatis.gen.util.EcmVelocityUtil;
 
 public abstract class AbstractColumn extends BaseObject {
@@ -45,6 +50,27 @@ public abstract class AbstractColumn extends BaseObject {
 
 	public String getDesc () {
 		return "isPk=" + getIsPK() + ", size=" + columnSize + ", NULL="+isNullable + ", Default="+columnDef; 
+	}
+	
+	public String getMappedFullName() throws Exception {
+	    String mappedFullName = getJavaMethodName();
+	    
+        Object tmpMappedFullName = Velocity.getProperty(this.getColumnName());
+        if(tmpMappedFullName!=null) {
+            if (tmpMappedFullName instanceof String) {
+                mappedFullName = (String)tmpMappedFullName;
+            } else {
+                @SuppressWarnings("unchecked")
+                List<String> tmpMappedFullNameList = (List<String>)tmpMappedFullName;
+                mappedFullName = tmpMappedFullNameList.get(0);
+            }
+        }
+        
+        return StringUtils.capitalize(mappedFullName);
+    }
+
+	public String getMappedFullNameL() throws Exception {
+	    return StringUtils.uncapitalize(getMappedFullName());
 	}
 	
 	// getter, setter
