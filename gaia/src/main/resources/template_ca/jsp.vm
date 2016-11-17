@@ -8,6 +8,8 @@
 <!-- EventHandler -->
 <script type="text/javascript" src="<c:out value="${jsUrl}"/>${moduleName}/${handlerFileName}"></script>
 
+<script type="text/javascript" src="<c:out value="${jsUrl}"/>${moduleName}/${bizName}.list.js"></script>
+
 <script type="text/javascript">
 jQuery(document).ready(function() {
     ${bizName}.list.bindButtonEvent();
