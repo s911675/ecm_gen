@@ -228,8 +228,8 @@ public abstract class AbstractEcmBaseGen {
         context.put("jspFileName", bizName + EcmJspGen.OUTPUT_FILE_SUFFIX+ EcmJspGen.OUTPUT_FILE_EXTENSION);
         
         context.put("jsFileName", bizName + EcmJsGen.OUTPUT_FILE_SUFFIX+ EcmJsGen.OUTPUT_FILE_EXTENSION);
-        context.put("providerFileName", entityName + EcmProviderGen.OUTPUT_FILE_SUFFIX+ EcmProviderGen.OUTPUT_FILE_EXTENSION);
-        context.put("handlerFileName", entityName + EcmHandlerGen.OUTPUT_FILE_SUFFIX+ EcmHandlerGen.OUTPUT_FILE_EXTENSION);
+        context.put("providerFileName", bizName+ "." + entityName + EcmProviderGen.OUTPUT_FILE_SUFFIX+ EcmProviderGen.OUTPUT_FILE_EXTENSION);
+        context.put("handlerFileName", bizName+ "." + entityName + EcmHandlerGen.OUTPUT_FILE_SUFFIX+ EcmHandlerGen.OUTPUT_FILE_EXTENSION);
         
         context.put("msgFileName", entityName + EcmMsgGen.OUTPUT_FILE_SUFFIX+ EcmMsgGen.OUTPUT_FILE_EXTENSION);
         
