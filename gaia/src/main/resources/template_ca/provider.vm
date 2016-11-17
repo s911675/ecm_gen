@@ -1,4 +1,4 @@
-#parse("template_ca/special4.vm").namespace('${entityName}Grid.settings');
+#include("template_ca/charDollar.vm").namespace('${entityName}Grid.settings');
 ${entityName}Grid.settings = {
 
     fields :

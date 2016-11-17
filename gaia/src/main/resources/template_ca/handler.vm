@@ -1,4 +1,4 @@
-#parse("template_ca/special4.vm").namespace("${entityName}Grid.eventhandler");
+#include("template_ca/charDollar.vm").namespace("${entityName}Grid.eventhandler");
 ${entityName}Grid.eventhandler = {
 
     bindButtonEvent : function() {

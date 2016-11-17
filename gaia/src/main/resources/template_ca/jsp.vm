@@ -1,8 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%
-#parse("template_ecm/license.vm")
-#parse("template_ecm/header.vm")
- %>
 
 <%@ include file="/WEB-INF/jsp/common/topAdmin.jsp" %>
 
@@ -22,7 +18,7 @@ jQuery(document).ready(function() {
 <div id="contentWrap">
     <!-- s : page title -->
     <h2 class="page_tit">
-        <a href="#" class="btn_favorite" onclick="fnSetFvAdd();return false;">
+        <a href="#" class="btn_favorite" onclick="common.admin.fnSetFvAdd();return false;">
             <span class="blind"><spring:message code="common.label.addToFavorites"/></span>
             <i class="fa fa-star"></i>
         </a>

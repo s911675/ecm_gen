@@ -1,4 +1,4 @@
-.namespace("${bizName}.list");
+#include("template_ca/charDollar.vm").namespace("${bizName}.list");
 ${bizName}.list = {
 
     initFormLoad : function(){
