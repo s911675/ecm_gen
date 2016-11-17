@@ -1,4 +1,7 @@
 # ${table.tableName} : ${table.comments}.
+
+${modulePkgName}.label.${bizName}.list.title = ${bizName}
+
 #foreach( $column in $columnList )
 ${modulePkgName}.js.label.${entityName}.${column.fieldName} = ${column.remarks}
 #end

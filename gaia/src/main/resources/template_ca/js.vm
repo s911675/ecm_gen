@@ -1,5 +1,5 @@
-.namespace("${modulePkgName}.${bizName}.list");
-${modulePkgName}.${bizName}.list = {
+.namespace("${bizName}.list");
+${bizName}.list = {
 
     initFormLoad : function(){
 
@@ -11,7 +11,7 @@ ${modulePkgName}.${bizName}.list = {
         console.log("binding events...");
 
         $(document).ready(function() {
-//            lotteindo.common.Util.setupEnterSearch("inputForm", "btn_search");
+            lotteindo.common.Util.setupEnterSearch("inputForm", "btn_search");
         });
 
         $('#btn_init').click(function(event){
@@ -19,7 +19,7 @@ ${modulePkgName}.${bizName}.list = {
         });
 
         $('#btn_search').click(function(){
-//            inputTblGrid.eventhandler.onSearch();
+            ${entityName}Grid.eventhandler.onSearch();
         });
 
         console.log("events bounded...");

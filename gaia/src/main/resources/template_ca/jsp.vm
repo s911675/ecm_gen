@@ -6,12 +6,12 @@
 
 <%@ include file="/WEB-INF/jsp/common/topAdmin.jsp" %>
 
-<script type="text/javascript" src="<c:out value="${baseUrl}"/><spring:message code="common.javascript.ca.path" />"></script>
+<script type="text/javascript" src="<c:out value="${baseUrl}"/><spring:message code="common.javascript.${moduleName}.path" />"></script>
 <!-- DataProvider -->
-<script type="text/javascript" src="<c:out value="${jsUrl}"/>ca/${bizName}.${entityName}.provider.js"></script>
+<script type="text/javascript" src="<c:out value="${jsUrl}"/>${moduleName}/${providerFileName}"></script>
 <!-- EventHandler -->
-<script type="text/javascript" src="<c:out value="${jsUrl}"/>ca/${bizName}.list.js"></script>
-<script type="text/javascript" src="<c:out value="${jsUrl}"/>ca/${bizName}.${entityName}.eventHandler.js"></script>
+<script type="text/javascript" src="<c:out value="${jsUrl}"/>${moduleName}/${handlerFileName}"></script>
+
 <script type="text/javascript">
 jQuery(document).ready(function() {
     ${bizName}.list.bindButtonEvent();
@@ -23,53 +23,54 @@ jQuery(document).ready(function() {
     <!-- s : page title -->
     <h2 class="page_tit">
         <a href="#" class="btn_favorite" onclick="fnSetFvAdd();return false;">
-            <span class="blind">즐겨찾기 추가</span>
+            <span class="blind"><spring:message code="common.label.addToFavorites"/></span>
             <i class="fa fa-star"></i>
         </a>
-     <spring:message code="ca.js.label.${bizNameL}.title"/>
+     <spring:message code="${moduleName}.label.${bizNameL}.title"/>
     </h2>
     <!--// e : page title -->
 
     <!-- s : search -->
-    <div class="search_area">
-        <fieldset>
-            <legend>search field</legend>
-            <span class="search_unit"><label for="inp_txt1">코드명</label> <input type="text" name="" id="inp_txt1" /></span>
-            <span class="search_unit">
-                <label for="inp_sel1">사용여부</label> 
-                <select id="iput_sel1">
-                    <option value="">전체</option>
-                    <option value="">사용</option>
-                    <option value="">사용안함</option>
-                </select>
-            </span>
-        </fieldset>
-        <div class="mgt10 t_right"><a href="#" class="btn btn_type01">조회</a> <a href="#" class="btn btn_type01">초기화</a></div>
-    </div>
+    <form name="inputForm" id="inputForm">
+        <div class="search_area">
+            <fieldset>
+                <legend>search field</legend>
+                <span class="search_unit">
+                    <label for="inp_txt1">검색어(수정하세요)</label> <input type="text" name="" id="inp_txt1" />
+                </span>
+                <span class="search_unit">
+                    <label for="inp_sel1"><spring:message code="common.label.useYn"/></label> 
+                    <select id="iput_sel1">
+                        <option value=""><spring:message code="common.selectbox.option.value.all"/></option>
+                        <option value="Y"><spring:message code="common.selectbox.option.value.use"/></option>
+                        <option value="N"><spring:message code="common.selectbox.option.value.notUse"/></option>
+                    </select>
+                </span>
+            </fieldset>
+            <div class="mgt10 t_right">
+               <a class="btn btn_type01" id="btn_search" href="#"><spring:message code="common.button.search"/></a>
+               <a class="btn btn_type01" id="btn_init" href="#"><spring:message code="common.button.init"/></a>
+           </div>
+        </div>
+    </form>
     <!--// e : search -->
 
     <!-- s : content -->
     <div class="cont_section"><!-- contSection -->
         <div class="inner_area">
-            <h3>코드그룹 목록 <span>(총 365건)</span></h3>
+            <h3><spring:message code="${moduleName}.label.${bizName}.${entityName}.list"/> <span class="total" id="${entityName}Grid-totalcount"></span></h3>
             <div class="util_area">
-                <a href="#" class="btn btn_type02">추가</a> <a href="#" class="btn btn_type02">삭제</a> <a href="#" class="btn btn_type02">저장</a>
+                <a class="btn btn_type02" id="btn_${entityNameL}_add" href="#"><spring:message code="common.button.add"/></a>
+                <a class="btn btn_type02" id="btn_${entityNameL}_del" href="#"><spring:message code="common.button.del"/></a>
+                <a class="btn btn_type02" id="btn_${entityNameL}_save" href="#"><spring:message code="common.button.save"/></a>
+                <a class="btn btn_type02" id="btn_${entityNameL}_init" href="#"><spring:message code="common.button.init"/></a>
+                
                 <div class="util_right">
-                    <a href="#" class="btn btn_icon"><span class="blind">엑셀다운</span><i class="fa fa-file-excel-o"></i></a>
-                    <select class="inp_sel mgl10" title="목록갯수 선택">
-                        <option value="">BO</option>
-                        <option value="">PO</option>
-                        <option value="">MO</option>
-                    </select>
-                    <span class="grid_move">
-                        <a href="#"><span class="blind">이전 페이지로 이동</span><i class="fa fa-caret-left"></i></a>
-                        <input type="text" name="" id="" class="inp_text t_center" style="width:50px" />
-                        <a href="#"><span class="blind">다음 페이지로 이동</span><i class="fa fa-caret-right"></i></a>
-                    </span>
+                    <a href="#" class="btn btn_icon"><span class="blind"><spring:message code="common.button.excel"/></span><i class="fa fa-file-excel-o"></i></a>
                 </div>
             </div>
             <div class="grid-area">
-            <!-- 리얼 그리드 들어가는 영역 -->
+                <div id="${entityName}Grid" realGrid></div>
             </div>
         </div>
     </div>

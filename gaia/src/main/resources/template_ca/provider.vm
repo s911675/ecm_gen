@@ -1,5 +1,5 @@
-.namespace('${entityName}.settings');
-${entityName}.settings = {
+#parse("template_ca/special4.vm").namespace('${entityName}Grid.settings');
+${entityName}Grid.settings = {
 
     fields :
     [

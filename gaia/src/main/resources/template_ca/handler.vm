@@ -1,11 +1,38 @@
-.namespace("${entityName}.eventhandler");
-${entityName}.eventhandler = {
+#parse("template_ca/special4.vm").namespace("${entityName}Grid.eventhandler");
+${entityName}Grid.eventhandler = {
 
     bindButtonEvent : function() {
 
         var self = this;
         var grid = self.grid;
 
+        $('#btn_${entityName}_add').click(function(e) {
+            e.preventDefault();
+            self.onAdd();
+        });
+
+        $('#btn_${entityName}_del').click(function(e) {
+            e.preventDefault();
+            self.onDelete();
+        });
+
+        $('#btn_${entityName}_save').click(function(e) {
+            if(!confirm(MESSAGES.format("common.js.alert.save"))){
+                return;            
+            } else {
+                e.preventDefault();
+                self.onSave();
+            }
+        });
+
+        $('#btn_${entityName}_grid_reset').click(function(e) {
+            if(!confirm(MESSAGES.format("common.js.grid.init"))){
+                return;
+            } else {
+                self.defaultHandler.onCancel(self.grid);
+            }
+        });
+        
         $('#btn_InputTbl_excel').click(function(event) {
             if(grid.getItemCount() == 0) {
                 alert(_noSearchMsg);
