@@ -21,15 +21,6 @@ public class ${bizName}EVO extends BaseCommonEntity {
 
     private ${entityClassName} ${entityClassNameL} = new ${entityClassName} ();
 
-    // setter, getter
-    public void set${entityClassName} (${entityClassName} ${entityClassNameL}) {
-        this.${entityClassNameL} = ${entityClassNameL};
-    }
-
-    public ${entityClassName} get${entityClassName} () {
-        return this.${entityClassNameL};
-    }
-
     @Override
     public <T> T copyTo(Class<T> type) throws Exception {
         T instance =  super.copyTo(type);
@@ -43,6 +34,15 @@ public class ${bizName}EVO extends BaseCommonEntity {
         return instance;
     }
     
+    // setter, getter
+    public void set${entityClassName} (${entityClassName} ${entityClassNameL}) {
+        this.${entityClassNameL} = ${entityClassNameL};
+    }
+
+    public ${entityClassName} get${entityClassName} () {
+        return this.${entityClassNameL};
+    }
+
 #foreach( $column in $columnList )
     /**
      * ${column.remarks}

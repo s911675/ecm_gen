@@ -6,8 +6,8 @@
     <sql id="listWhere">
 		<where>
 #foreach( $column in $columnList )
-			<if test="${column.mappedFullName} != null">
-				AND ${column.columnName} = #{${column.mappedFullName}}
+			<if test="${column.mappedFullNameL} != null">
+				AND ${column.columnName} = #{${column.mappedFullNameL}}
 			</if>
 #if( $velocityHasNext )
 
@@ -22,7 +22,7 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName} AS ${column.mappedFullName}#if( $velocityHasNext ), #end
+            ${column.columnName} AS ${column.mappedFullNameL}#if( $velocityHasNext ), #end
 
 #end
 		FROM ${table.tableName}
@@ -37,13 +37,13 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName} AS ${column.mappedFullName}#if( $velocityHasNext ), #end
+            ${column.columnName} AS ${column.mappedFullNameL}#if( $velocityHasNext ), #end
 
 #end
 		FROM ${table.tableName}
 		WHERE ROWNUM = 1
 #foreach( $primaryKey in ${table.primaryKeyList} )
-			AND ${primaryKey.columnName} = #{${primaryKey.mappedFullName}}
+			AND ${primaryKey.columnName} = #{${primaryKey.mappedFullNameL}}
 #if( $velocityHasNext )
 
 #end
