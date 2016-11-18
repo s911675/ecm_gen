@@ -6,7 +6,11 @@
     <sql id="listWhere">
 		<where>
 #foreach( $column in $columnList )
+#if(${column.fieldType}=="String")
+			<if test="${column.mappedFullNameL} != null AND ${column.mappedFullNameL}.isEmpty()">
+#else
 			<if test="${column.mappedFullNameL} != null">
+#end
 				AND ${column.columnName} = #{${column.mappedFullNameL}}
 			</if>
 #if( $velocityHasNext )
