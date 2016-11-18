@@ -5,7 +5,7 @@ ${entityName}Grid.settings = {
     [
 #foreach( $column in $columnList )
         {
-            fieldName : "$column.mappedFullName", // fieldType = $column.fieldType
+            fieldName : "$column.mappedFullNameL", // fieldType = $column.fieldType
 #if($column.fieldType == "String")
 #elseif ($column.fieldType == "Integer" || $column.fieldType == "Float" || $column.fieldType == "Double" || $column.fieldType == "int" || $column.fieldType == "long")
             fieldType : "number"
@@ -23,8 +23,8 @@ ${entityName}Grid.settings = {
     [
 #foreach( $column in $columnList )
         {
-            name : "$column.mappedFullName",
-            fieldName : "$column.mappedFullName",
+            name : "$column.mappedFullNameL",
+            fieldName : "$column.mappedFullNameL",
             header : {
                 text : MESSAGES.format("${moduleName}.js.label.${entityName}.$column.fieldName")
             },
