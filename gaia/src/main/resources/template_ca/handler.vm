@@ -51,7 +51,6 @@ ${entityName}Grid.eventhandler = {
 
     },
 
-    // 조회
     onSearch : function(pageIdx) {
 
         this.grid.cancel();
@@ -65,13 +64,55 @@ ${entityName}Grid.eventhandler = {
         this.controller.doQuery(this, "", pageIdx, pagingFunc);
     },
 
-    // 엑셀 다운로드
+    onAdd : function() {
+        var self = this;
+        var grid = self.grid;
+
+        if(!grid.tryCommit()) return;
+
+        var defaultValues = {
+                
+        };
+        
+        self.defaultHandler.onAdd(grid, defaultValues);
+    },
+
+    onDelete : function() {
+        var self = this;
+        var grid = self.grid;
+
+        grid.cancel();
+
+        var checkedItems = grid.getCheckedItems();
+        if (checkedItems.length == 0) {
+            alert(MESSAGES.format("common.js.message.select.delete.target"));
+            return;
+        }
+
+        self.defaultHandler.onDelete(grid);
+    },
+
+    onSave : function() {
+        var grid = this.grid;
+
+        if(!grid.tryCommit()) {
+            return;
+        }
+
+        var checkedItems = grid.getCheckedItems();
+        if (checkedItems.length == 0) {
+            alert(MESSAGES.format("common.js.message.nodata.checked"));
+            return;
+        }
+
+        this.controller.doSave(this, this.grid.localId);
+    },
+    
     onExcelExport : function() {
 
         var self = this;
         var grid = self.grid;
 
         self.defaultHandler.onExcelExport(grid, "Input Table");
-
     }
 }
