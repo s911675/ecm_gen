@@ -57,16 +57,18 @@ jQuery(document).ready(function() {
     <div class="cont_section"><!-- contSection -->
         <div class="inner_area">
             <h3><spring:message code="${moduleName}.label.${bizName}.${entityName}.list"/> <span class="total" id="${entityName}Grid-totalcount"></span></h3>
-            <div class="util_area">
+            <div class="util_area grid_box clfix">
                 <a class="btn btn_type02" id="btn_${entityNameL}_add" href="#"><spring:message code="common.button.add"/></a>
                 <a class="btn btn_type02" id="btn_${entityNameL}_del" href="#"><spring:message code="common.button.del"/></a>
                 <a class="btn btn_type02" id="btn_${entityNameL}_save" href="#"><spring:message code="common.button.save"/></a>
                 <a class="btn btn_type02" id="btn_${entityNameL}_init" href="#"><spring:message code="common.button.init"/></a>
                 
                 <div class="util_right">
-                    <a href="#" class="btn btn_icon"><span class="blind"><spring:message code="common.button.excel"/></span><i class="fa fa-file-excel-o"></i></a>
+                    <%-- <a href="#" class="btn btn_icon"><span class="blind"><spring:message code="common.button.excel"/></span><i class="fa fa-file-excel-o"></i></a> --%>
                 </div>
+                <div class="util_right" grid-id="${entityName}Grid"></div>
             </div>
+            
             <div class="grid-area">
                 <div id="${entityName}Grid" realGrid></div>
             </div>
