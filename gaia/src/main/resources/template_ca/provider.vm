@@ -41,14 +41,12 @@ ${entityName}Grid.settings = {
 
     props : {
         paging : true,
-        defrow : 10,
-        rows : [ 5, 100, 200, 500, 1000, 5000, 10000 ], 
-        width : "100%", 
-        height : "300px", 
-        autoFitHeight : true,
+        rows : [ 50, 100, 200, 500, 1000, 5000, 10000 ],
+        defrow : 50,
+        width : "100%",
+        height : "300px",
         checkbox : true,
         crud : true,
-        form : "inputForm",
         action : CONSTANTS.baseUrl + "${moduleName}/${bizName}/getList.do",
         saveAction : CONSTANTS.baseUrl + "${moduleName}/${bizName}/saveCUD.do"
     }
