@@ -20,7 +20,7 @@ import ${pkgMapperBiz}.${mapperBizClassName};
 #parse("template_ecm/header.vm")
 @Service
 @Lazy
-@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+@Transactional(value="localZoneTxManager", propagation = Propagation.SUPPORTS, readOnly = true)
 public class ${serviceImplClassName} extends AbstractService implements ${serviceClassName} {
 	@Autowired
     private ${mapperClassName} ${mapperClassNameL};
@@ -47,32 +47,32 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
 	}
 	
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+	@Transactional(value="localZoneTxManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
 	public void insert(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
 		${mapperTrxClassNameL}.insert(${entityEVOClassNameL}.get${entityClassName}());
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+	@Transactional(value="localZoneTxManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
 	public void update(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
 		${mapperTrxClassNameL}.update(${entityEVOClassNameL}.get${entityClassName}());
 	}
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+	@Transactional(value="localZoneTxManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
 	public void delete(${entityEVOClassName} ${entityEVOClassNameL}) throws Exception {
 		${mapperTrxClassNameL}.delete(${entityEVOClassNameL}.get${entityClassName}());
 	}
 
     @Override
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    @Transactional(value="localZoneTxManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
     public void saveCUD(List<${entityEVOClassName}> createList, List<${entityEVOClassName}> updateList, List<${entityEVOClassName}> deleteList) throws Exception {
         insertList(createList);
         updateList(updateList);
         deleteList(deleteList);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    @Transactional(value="localZoneTxManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
     public void insertList(List<${entityEVOClassName}> createList) throws Exception {
         if (createList != null && createList.size() != 0) {
             for (${entityEVOClassName} tmp${entityEVOClassName} : createList) {
@@ -81,7 +81,7 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    @Transactional(value="localZoneTxManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
     public void updateList(List<${entityEVOClassName}> updateList) throws Exception {
         if (updateList != null && updateList.size() != 0) {
             for (${entityEVOClassName} tmp${entityEVOClassName} : updateList) {
@@ -90,7 +90,7 @@ public class ${serviceImplClassName} extends AbstractService implements ${servic
         }
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
+    @Transactional(value="localZoneTxManager", propagation = Propagation.REQUIRED, rollbackFor = Exception.class, readOnly = false)
     public void deleteList(List<${entityEVOClassName}> deleteList) throws Exception {
         if (deleteList != null && deleteList.size() != 0) {
             for (${entityEVOClassName} tmp${entityEVOClassName} : deleteList) {
