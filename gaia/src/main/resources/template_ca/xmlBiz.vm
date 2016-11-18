@@ -19,14 +19,14 @@
 #end
 		</where>
     </sql>
-    
+
 	<sql id="getListBase" >
         <![CDATA[
 		/* getListBase */
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName} AS ${column.mappedFullNameL}#if( $velocityHasNext ), #end
+            ${column.columnName} AS ${column.mappedFullNameL}#if( $velocityHasNext ),#end
 
 #end
 		FROM ${table.tableName}
@@ -41,7 +41,7 @@
 		 ]]>
 		SELECT
 #foreach( $column in $columnList )
-            ${column.columnName} AS ${column.mappedFullNameL}#if( $velocityHasNext ), #end
+            ${column.columnName} AS ${column.mappedFullNameL}#if( $velocityHasNext ),#end
 
 #end
 		FROM ${table.tableName}
