@@ -9,6 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.Velocity;
@@ -162,12 +163,14 @@ public abstract class AbstractEcmBaseGen {
 		    bizName = entityName;
 		    bizNameL = entityNameL;
 		} else {
-		    bizNameL = Character.toLowerCase(bizName.charAt(0)) + bizName.substring(1);
+		    bizNameL = StringUtils.uncapitalize(bizName);
+		    
 		}
 		context.put("bizName", bizName);
 		context.put("bizNameL", bizNameL);
 		
 		context.put("entityName", entityName);
+		context.put("entityNameL", StringUtils.uncapitalize(entityName));
         
 		// class name
 		context.put("entityClassName", entityName + EcmEntityGen.OUTPUT_FILE_SUFFIX);
